@@ -1,11 +1,13 @@
 import React from 'react';
 import './App.css';
+import { NavHeader } from './nav-header/NavHeader';
 
-function App() {
+const App: React.FC = () => {
   return (
     <div className="App">
+      <NavHeader></NavHeader>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

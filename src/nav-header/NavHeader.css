@@ -1,0 +1,10 @@
+.nav-header {
+    background-color: black;
+    color: white;
+}
+
+.nav-item:hover {
+    border-radius: 5%;
+    background-color: rgb(20, 20, 20);
+    cursor: pointer;
+}
