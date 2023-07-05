@@ -1,4 +1,12 @@
-import { Component } from "react";
+import React from 'react';
 import './Devices.css';
 
-export class Devices extends Component {}
+export interface DevicesProps {}
+
+const Devices: React.FC = (props: DevicesProps) => {
+    return (
+        <div>Devices!</div>
+    )
+}
+
+export default Devices
