@@ -3,8 +3,29 @@
     color: white;
 }
 
+.nav-item {
+    border: 1px solid transparent;
+    transition: transform 0.3s ease;
+}
+
 .nav-item:hover {
-    border-radius: 5%;
-    background-color: rgb(20, 20, 20);
+    border-radius: 10%;
     cursor: pointer;
+    transform: scale(1.1);
+    border-color: white;
+}
+
+.logo {
+    height: 50px;
+    width: 70px;
+}
+
+.logo:hover {
+    cursor: pointer;
+}
+
+.user-image {
+    height: 40px;
+    width: 40px;
+    border-radius: 20%;
 }
