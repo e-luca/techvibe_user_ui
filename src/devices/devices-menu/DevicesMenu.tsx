@@ -18,7 +18,7 @@ const DevicesMenu: React.FC<DevicesMenuProps> = ({ onDeviceSelect }) => {
     }
 
     return (
-        <div className="card">
+        <div className="card border-danger">
             <ul className="list-group list-group-flush">
                 { deviceItems.map((item) => (
                         <li key={ item.type } 

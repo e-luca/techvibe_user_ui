@@ -19,7 +19,8 @@ const NavBar: React.FC = () => {
 
             { navigationItems.map((item) => (
                     <div className="nav-item p-2" 
-                        onClick={ () => navigateTo(item.path)} >
+                        onClick={ () => navigateTo(item.path)} 
+                        key={ item.label }>
                         { item.label }
                     </div>
                 ))
