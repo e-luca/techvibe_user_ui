@@ -1,0 +1,25 @@
+div.login-card {
+    width: 30%;
+    background-color: rgb(238, 238, 238);
+}
+
+.footer-link {
+    color: red;
+}
+
+#email, #password {
+    background-color: rgb(238, 238, 238);
+    border-color: rgb(173, 173, 173);
+}
+
+.footer-link:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.background {
+    min-height: 100vh;
+    background-image: url('../assets/img/login-background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}

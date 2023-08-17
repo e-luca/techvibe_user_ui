@@ -1,13 +1,17 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import './NavBar.css'
 import { NavBarItems } from '../constants'
 
 const NavBar: React.FC = () => {
     const navigationItems = NavBarItems
     const navigate = useNavigate()
+    const location = useLocation()
+    const isRegisterPage = location.pathname === '/login' || location.pathname === '/register'
 
     const navigateTo = (path: string) => navigate(path)
+
+    if (isRegisterPage) return null
 
     return (
         <div className="nav-header d-flex align-items-center gap-3 p-3">
@@ -30,6 +34,11 @@ const NavBar: React.FC = () => {
                 src={ require('../assets/img/user-default.jpg') } 
                 className="user-image ms-auto">
             </img>
+
+            <div className="nav-item p-2"
+                onClick={ () => navigateTo('/login') }>
+                Login
+            </div>
         </div>
     )
 }
