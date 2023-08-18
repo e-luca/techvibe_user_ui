@@ -1,0 +1,19 @@
+div.register-card {
+    width: 40%;
+    background-color: rgb(238, 238, 238);
+}
+
+.header-title {
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+.progress {
+    width: 40%;
+    margin-top: 5em;
+}
+
+div.register-card input, div.register-card select {
+    background-color: rgb(238, 238, 238);
+    border-color: rgb(173, 173, 173);
+}

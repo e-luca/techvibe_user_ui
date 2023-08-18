@@ -1,6 +1,7 @@
 import React from 'react'
 import './Login.css'
 import { useNavigate } from 'react-router-dom'
+import FormInput from '../utils/form-input/FormInput'
 
 const Login: React.FC = () => {
     const navigate = useNavigate()
@@ -20,23 +21,9 @@ const Login: React.FC = () => {
                 </div> 
 
                 <div className="card-body">
-
                     <form>
-                        <div className="form-group px-3">
-                            <label htmlFor="email"> Email </label>
-                            <input type="email" 
-                                   className="form-control mb-3" 
-                                   id="email" 
-                                   placeholder="Email..."/>
-                        </div>
-
-                        <div className="form-group px-3">
-                            <label htmlFor="password"> Password </label>
-                            <input type="password" 
-                                   className="form-control" 
-                                   id="password" 
-                                   placeholder="Password..."/>
-                        </div>
+                        <FormInput data={{ label: "Email", id: "email", type: "email", placeholder: "Email" }}/>
+                        <FormInput data={{ label: "Password", id: "password", type: "password", placeholder: "Password" }}/>
 
                         <div className="d-flex justify-content-center">
                             <button type="button"
