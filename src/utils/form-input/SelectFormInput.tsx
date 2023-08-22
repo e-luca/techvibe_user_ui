@@ -16,6 +16,7 @@ const SelectFormInput: React.FC<SelectFormInputProps> = ({ data }) => {
         <div className="form-group px-3">
             <label htmlFor={ data.id }> { data.label } </label>
             <select  className="form-select mb-3" 
+                    name={ data.id }
                     id={ data.id }>
 
                 <option value={ data.selectedOption }>{ data.selectedOption }</option>

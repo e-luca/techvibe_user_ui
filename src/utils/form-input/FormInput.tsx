@@ -15,7 +15,8 @@ const FormInput: React.FC<FormInputProps> = ({ data }) => {
     return (
         <div className="form-group px-3">
             <label htmlFor={ data.id }> { data.label } </label>
-            <input type={ data.type } 
+            <input type={ data.type }
+                    name={ data.id } 
                     className="form-control mb-3" 
                     id={ data.id } 
                     placeholder={ data.placeholder }/>

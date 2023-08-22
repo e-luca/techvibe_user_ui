@@ -1,4 +1,4 @@
-import { DeviceType } from "../enum/DeviceType.enum";
+import { DeviceType } from '../enum/DeviceType.enum'
 
 export interface Device {
     id: number;

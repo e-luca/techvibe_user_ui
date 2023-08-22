@@ -1,14 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Registration.css'
 import UserDetails from './user-details/UserDetails'
 import ProgressBar from '../utils/ProgressBar'
 import UserAddress from './user-address/UserAddress'
+import { User } from '../data-models/model/User.model'
+import { AccessInfo } from '../data-models/model/AccessInfo.model'
+
+interface UserDetailsData {
+    user: User,
+    accessInfo: AccessInfo,
+}
 
 const Registration: React.FC = () => {
+    const [user, setUser] = useState<User | null>(null)
+    const [accessInfo, setAccessInfo] = useState<AccessInfo | null>(null)
+    const [progressValue, setProgressValue] = useState<number>(0)
+
+    const handleUserDetails = (data: UserDetailsData) => {
+        setUser(data.user)
+        setAccessInfo(data.accessInfo)
+        setProgressValue(50)
+    }
     return (
         <div className="d-flex flex-column justify-content-center align-items-center background">
-            <ProgressBar currentValue={ 50 } minValue={ 0 } maxValue={ 100 } />
-            <UserDetails/>
+            <ProgressBar currentValue={ progressValue } minValue={ 0 } maxValue={ 100 } />
+            <UserDetails onSubmitData={ handleUserDetails }/>
             <UserAddress/>
         </div>
     )
