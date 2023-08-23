@@ -8,6 +8,7 @@ export class UserAddress {
         public country: string,
         public latitude: string,
         public longitude: string,
+        public type: string,
         public notes: string,
     ) {}
 }
