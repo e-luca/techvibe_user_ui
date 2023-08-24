@@ -37,12 +37,12 @@ const UserAddress: React.FC<UserAddressProps> = ({ onSubmitData }) => {
 
                 <div className="card-body">
                     <form onSubmit={ submitData }>
-                        <FormInput data={ { label: "Street name", id: "streetName", type: "text", placeholder: "Street name" } } />
-                        <FormInput data={ { label: "Street number", id: "streetNumber", type: "text", placeholder: "Street number" } } />
-                        <FormInput data={ { label: "City", id: "city", type: "text", placeholder: "City" } } />
-                        <FormInput data={ { label: "State", id: "state", type: "text", placeholder: "State" } } />
-                        <FormInput data={ { label: "ZIP Code", id: "zip", type: "text", placeholder: "ZIP code" } } />
-                        <FormInput data={ { label: "Country", id: "country", type: "text", placeholder: "Country" } } />
+                        <FormInput data={ { label: "Street name", id: "streetName", type: "text", placeholder: "Street name", required: true } } />
+                        <FormInput data={ { label: "Street number", id: "streetNumber", type: "text", placeholder: "Street number", required: true } } />
+                        <FormInput data={ { label: "City", id: "city", type: "text", placeholder: "City", required: true } } />
+                        <FormInput data={ { label: "State", id: "state", type: "text", placeholder: "State", required: true } } />
+                        <FormInput data={ { label: "ZIP Code", id: "zip", type: "text", placeholder: "ZIP code", required: true } } />
+                        <FormInput data={ { label: "Country", id: "country", type: "text", placeholder: "Country", required: true } } />
                         <FormInput data={ { label: "Latitude", id: "latitude", type: "text", placeholder: "Latitude" } } />
                         <FormInput data={ { label: "Longitude", id: "longitude", type: "text", placeholder: "Longitude" } } />
                         <SelectFormInput data={ { label: "Type", id: "type", selectedOption: 'Primary Address', options: addressTypes } } />

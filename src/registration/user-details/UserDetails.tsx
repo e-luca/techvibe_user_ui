@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './UserDetails.css'
 import { User } from '../../data-models/model/User.model';
 import { AccessInfo } from '../../data-models/model/AccessInfo.model';
@@ -10,6 +10,12 @@ interface UserDetailsProps {
 }
 
 const UserDetails: React.FC<UserDetailsProps> = ({ onSubmitData }) => {
+
+    const [enteredPassword, setEnteredPassword] = useState('')
+
+    const handleOnChange = (value: string) => {
+        setEnteredPassword(value)
+    }
 
     const submitData = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -35,8 +41,8 @@ const UserDetails: React.FC<UserDetailsProps> = ({ onSubmitData }) => {
                     <FormInput data={ { label: "Last Name", id: "lastName", type: "text", placeholder: "Last Name", required: true } } />
                     <FormInput data={ { label: "Username", id: "username", type: "text", placeholder: "Username", pattern: '^[a-zA-Z0-9_]+$', errorMessage: "Only numbers, letters and _ are allowed!", required: true } } />
                     <FormInput data={ { label: "Email", id: "email", type: "email", placeholder: "Email", errorMessage: "Invalid email format!", required: true } } />
-                    <FormInput data={ { label: "Password", id: "password", type: "password", placeholder: "Password", errorMessage: "Password should be 8-16 characters and include 1 letter, 1 number and 1 special character!", required: true } } />
-                    <FormInput data={ { label: "Confirm password", id: "confirmPassword", type: "password", placeholder: "Confirm password", errorMessage: "Passwords don't match!", required: true } } />
+                    <FormInput data={ { label: "Password", id: "password", type: "password", placeholder: "Password", pattern: '^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$', errorMessage: "Password should be 8-16 characters and include 1 letter, 1 number and 1 special character!", required: true } } onChange={ handleOnChange } />
+                    <FormInput data={ { label: "Confirm password", id: "confirmPassword", type: "password", placeholder: "Confirm password", pattern: enteredPassword, errorMessage: "Passwords don't match!", required: true } } />
                     <FormInput data={ { label: "Date of birth", id: "dateOfBirth", type: "date", placeholder: "Date of birth", required: true } } />
                     <FormInput data={ { label: "Image URL", id: "image", type: "text", placeholder: "Image URL" } } />
                     <SelectFormInput data={ { label: "Security question", id: "question", selectedOption: "Select question", options: ["Aaa", "Bbbb"] } } />
