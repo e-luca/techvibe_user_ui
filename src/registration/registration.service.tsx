@@ -7,7 +7,7 @@ export class RegistrationService {
 
     private baseURL = 'http://localhost:8080/api/v1/auth'
 
-    async register(request: Registration): Promise<APIResponse<string>> {
+    async register(request: Registration): Promise<APIResponse<void>> {
         try {
             return await axios.post( `${this.baseURL}/registration`, request)
         } catch (error: any) {
