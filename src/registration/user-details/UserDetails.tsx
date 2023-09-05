@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './UserDetails.css'
 import { User } from '../../data-models/model/User.model';
 import { AccessInfo } from '../../data-models/model/AccessInfo.model';
 import FormInput from '../../utils/form-input/FormInput';
 import SelectFormInput from '../../utils/form-input/SelectFormInput';
+import { RegistrationService } from '../registration.service';
 
 interface UserDetailsProps {
     onSubmitData: (data: { user: User, accessInfo: AccessInfo }) => void
@@ -12,6 +13,12 @@ interface UserDetailsProps {
 const UserDetails: React.FC<UserDetailsProps> = ({ onSubmitData }) => {
 
     const [enteredPassword, setEnteredPassword] = useState('')
+    const [questions, setQuestions] = useState<string[]>([])
+
+    useEffect(() => {
+        const service = new RegistrationService()
+        service.getSecurityQuestions().then(response => setQuestions(response.data))
+    }, [])
 
     const handleOnChange = (value: string) => {
         setEnteredPassword(value)
@@ -23,7 +30,8 @@ const UserDetails: React.FC<UserDetailsProps> = ({ onSubmitData }) => {
         const userData = Object.fromEntries(data.entries())
         const user = new User(0, userData.firstName.toString(), userData.lastName.toString(), userData.username.toString(), 
                                 userData.email.toString(), userData.dateOfBirth.toString(), userData.image.toString(), '', '')
-        const accessInfo = new AccessInfo(userData.password.toString(), userData.question.toString(), userData.answer.toString())
+        const question = userData.question.toString() === 'Select question' ? '' : userData.question.toString()                      
+        const accessInfo = new AccessInfo(userData.password.toString(), question, userData.answer.toString())
         onSubmitData({ user, accessInfo })
     }
 
