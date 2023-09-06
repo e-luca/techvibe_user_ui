@@ -53,7 +53,7 @@ const UserDetails: React.FC<UserDetailsProps> = ({ onSubmitData }) => {
                     <FormInput data={ { label: "Confirm password", id: "confirmPassword", type: "password", placeholder: "Confirm password", pattern: enteredPassword, errorMessage: "Passwords don't match!", required: true } } />
                     <FormInput data={ { label: "Date of birth", id: "dateOfBirth", type: "date", placeholder: "Date of birth", required: true } } />
                     <FormInput data={ { label: "Image URL", id: "image", type: "text", placeholder: "Image URL" } } />
-                    <SelectFormInput data={ { label: "Security question", id: "question", selectedOption: "Select question", options: ["Aaa", "Bbbb"] } } />
+                    <SelectFormInput data={ { label: "Security question", id: "question", selectedOption: "Select question", options: questions } } />
                     <FormInput data={ { label: "Answer", id: "answer", type: "text", placeholder: "Answer" } } />
 
                     <div className="d-flex justify-content-end">
