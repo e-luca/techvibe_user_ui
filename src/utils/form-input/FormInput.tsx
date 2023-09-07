@@ -20,10 +20,10 @@ const FormInput: React.FC<FormInputProps> = ({ data, onChange }) => {
     const [inputValue, setInputValue] = useState('')
     const [touched, setTouched] = useState(false)
 
-    const onValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setInputValue(event.currentTarget.value)
+    const onValueChange = (event: React.FocusEvent<HTMLInputElement>) => {
+        setInputValue(event.target.value)
         setTouched(true)
-        if (onChange) onChange(inputValue)
+        if (onChange) onChange(event.target.value)
     }
 
     const isValid = () => {
@@ -43,7 +43,7 @@ const FormInput: React.FC<FormInputProps> = ({ data, onChange }) => {
                     pattern={ data.pattern }
                     required= { data.required } 
                     placeholder={ data.placeholder } 
-                    onChange={ onValueChange }/>
+                    onBlur={ onValueChange }/>
             {   touched && !isValid() && (
                 <div className="invalid-feedback">
                     { data.errorMessage || 'This field is required.' }
