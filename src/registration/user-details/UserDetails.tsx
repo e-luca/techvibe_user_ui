@@ -5,6 +5,7 @@ import { AccessInfo } from '../../data-models/model/AccessInfo.model';
 import FormInput from '../../utils/form-input/FormInput';
 import SelectFormInput from '../../utils/form-input/SelectFormInput';
 import { RegistrationService } from '../registration.service';
+import moment from 'moment';
 
 interface UserDetailsProps {
     onSubmitData: (data: { user: User, accessInfo: AccessInfo }) => void
@@ -17,7 +18,7 @@ const UserDetails: React.FC<UserDetailsProps> = ({ onSubmitData }) => {
 
     useEffect(() => {
         const service = new RegistrationService()
-      //  service.getSecurityQuestions().then(response => setQuestions(response.data))
+        service.getSecurityQuestions().then(response => setQuestions(response.data))
     }, [])
 
     const handleOnChange = (value: string) => {
@@ -29,11 +30,13 @@ const UserDetails: React.FC<UserDetailsProps> = ({ onSubmitData }) => {
         const data = new FormData(event.currentTarget)
         const userData = Object.fromEntries(data.entries())
         const user = new User(0, userData.firstName.toString(), userData.lastName.toString(), userData.username.toString(), 
-                                userData.email.toString(), userData.dateOfBirth.toString(), userData.image.toString(), '', '')
+                                userData.email.toString(), userData.dateOfBirth.toString(), userData.image.toString(), formatDate('YYYY-MM-DD') , formatDate('YYYY-MM-DDTHH:mm:ss'))
         const question = userData.question.toString() === 'Select question' ? '' : userData.question.toString()                      
         const accessInfo = new AccessInfo(userData.password.toString(), question, userData.answer.toString())
         onSubmitData({ user, accessInfo })
     }
+
+    const formatDate = (format: string) => moment().format(format)
 
     return (
         <div className="card border-danger register-card my-3 pt-2">
