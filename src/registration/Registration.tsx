@@ -8,7 +8,7 @@ import { AccessInfo } from '../data-models/model/AccessInfo.model'
 import { UserAddress as Address } from '../data-models/model/UserAddress.model'
 import { Registration as RegisterRequest } from '../data-models/model/Registration.model'
 import { useNavigate } from 'react-router-dom'
-import { RegistrationService } from './registration.service'
+import { AuthService } from '../auth/auth.service'
 
 interface UserDetailsData {
     user: User,
@@ -20,7 +20,7 @@ const Registration: React.FC = () => {
     const [accessInfo, setAccessInfo] = useState<AccessInfo | null>(null)
     const [progressValue, setProgressValue] = useState<number>(0)
     const navigate = useNavigate()
-    const service = new RegistrationService()
+    const service = new AuthService()
 
     const handleUserDetails = (data: UserDetailsData) => {
         setUser(data.user)

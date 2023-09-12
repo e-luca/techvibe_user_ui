@@ -2,10 +2,21 @@ import React from 'react'
 import './Login.css'
 import { useNavigate } from 'react-router-dom'
 import FormInput from '../utils/form-input/FormInput'
+import { AuthService } from '../auth/auth.service'
+import { AuthenticationRequest } from '../data-models/model/AuthenticationRequest.model'
 
 const Login: React.FC = () => {
     const navigate = useNavigate()
-    const navigateTo = (path: string) => navigate(path) 
+    const navigateTo = (path: string) => navigate(path)
+    
+    const login = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+        const data = new FormData(event.currentTarget)
+        const requestData = Object.fromEntries(data.entries())
+        const service = new AuthService()
+        const request = new AuthenticationRequest(requestData.email.toString(), requestData.password.toString())
+        service.authenticate(request).then(_ => navigateTo('/home'))
+    }
 
     return (
         <div className="d-flex justify-content-center align-items-baseline background">
@@ -21,12 +32,12 @@ const Login: React.FC = () => {
                 </div> 
 
                 <div className="card-body">
-                    <form>
+                    <form onSubmit={ login }>
                         <FormInput data={{ label: "Email", id: "email", type: "email", placeholder: "Email" }}/>
                         <FormInput data={{ label: "Password", id: "password", type: "password", placeholder: "Password" }}/>
 
                         <div className="d-flex justify-content-center">
-                            <button type="button"
+                            <button type="submit"
                                     className="btn btn-danger mt-3">
                                         Login
                             </button>

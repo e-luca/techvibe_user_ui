@@ -2,10 +2,12 @@ import axios from 'axios'
 import { APIResponse } from '../data-models/model/ApiResponse.model'
 import { APIError } from '../data-models/model/ApiError.model'
 import { Registration } from '../data-models/model/Registration.model'
+import { AuthenticationRequest } from '../data-models/model/AuthenticationRequest.model'
 
-export class RegistrationService {
+export class AuthService {
 
     private baseURL = 'http://localhost:8080/api/v1/auth'
+    private defaultErrorRespone = new APIError(500, 'Internal Server Error', 'An unknown error occurred')
 
     async register(request: Registration): Promise<APIResponse<void>> {
         try {
@@ -13,7 +15,7 @@ export class RegistrationService {
         } catch (error: any) {
             throw error && error.response 
                     ? new APIError(error.response.status, error.response.statusText, error.message)
-                    : new APIError(500, 'Internal Server Error', 'An unknown error occurred')
+                    : this.defaultErrorRespone
         }
     }
 
@@ -23,7 +25,17 @@ export class RegistrationService {
         } catch (error: any) {
             throw error && error.response 
                     ? new APIError(error.response.status, error.response.statusText, error.message)
-                    : new APIError(500, 'Internal Server Error', 'An unknown error occurred')
+                    : this.defaultErrorRespone
+        }
+    }
+
+    async authenticate(request: AuthenticationRequest): Promise<APIResponse<string>> {
+        try {
+            return await axios.post(`${this.baseURL}/authenticate`, request)
+        } catch (error: any) {
+            throw error && error.response 
+                    ? new APIError(error.response.status, error.response.statusText, error.message)
+                    : this.defaultErrorRespone
         }
     }
 }

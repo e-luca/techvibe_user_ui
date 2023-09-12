@@ -4,7 +4,7 @@ import { User } from '../../data-models/model/User.model';
 import { AccessInfo } from '../../data-models/model/AccessInfo.model';
 import FormInput from '../../utils/form-input/FormInput';
 import SelectFormInput from '../../utils/form-input/SelectFormInput';
-import { RegistrationService } from '../registration.service';
+import { AuthService } from '../../auth/auth.service';
 import moment from 'moment';
 
 interface UserDetailsProps {
@@ -17,7 +17,7 @@ const UserDetails: React.FC<UserDetailsProps> = ({ onSubmitData }) => {
     const [questions, setQuestions] = useState<string[]>([])
 
     useEffect(() => {
-        const service = new RegistrationService()
+        const service = new AuthService()
         service.getSecurityQuestions().then(response => setQuestions(response.data))
     }, [])
 
