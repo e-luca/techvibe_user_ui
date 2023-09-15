@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './DevicesBoard.css'
 import { Device } from '../../data-models/model/Device.model'
-import { getDevicesByType } from '../deviceService'
+import { DeviceService } from '../device.service'
 import { DeviceType } from '../../data-models/enum/DeviceType.enum'
 import DeviceCard from '../device-card/DeviceCard'
 
@@ -13,10 +13,12 @@ const DevicesBoard: React.FC<DeviceBoardProps> = ({ type }) => {
     const [devices, setDevices] = useState<Device[]>([])
     const [loading, setLoading] = useState<boolean>(false)
 
-    const getDevices = async () => {
-        const response = await getDevicesByType(type, 0, 10)
-        setDevices(response.data.content)
-        setLoading(false)
+    const getDevices = () => {
+        const service = new DeviceService()
+        service.getDevicesByType(type, 0 , 10).then((response) => {
+            setDevices(response.data.content)
+            setLoading(false)
+        })
     }
 
     useEffect(() => {
@@ -34,7 +36,9 @@ const DevicesBoard: React.FC<DeviceBoardProps> = ({ type }) => {
         </div>
         )
     : (
-        <div className="spinner-border text-danger"></div>
+        <div className="d-flex w-100 h-100 justify-content-center align-items-center">
+            <div className="spinner-border text-danger"></div>
+        </div>
         )
 }
 
