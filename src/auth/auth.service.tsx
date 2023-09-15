@@ -6,7 +6,7 @@ import { AuthenticationRequest } from '../data-models/model/AuthenticationReques
 
 export class AuthService {
 
-    private baseURL = 'http://localhost:8080/api/v1/auth'
+    private baseURL = `${process.env.REACT_APP_API_BASE_URL}/api/v1/auth`
     private defaultErrorRespone = new APIError(500, 'Internal Server Error', 'An unknown error occurred')
 
     async register(request: Registration): Promise<APIResponse<void>> {

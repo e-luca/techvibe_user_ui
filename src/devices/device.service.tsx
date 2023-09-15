@@ -6,7 +6,7 @@ import { APIError } from '../data-models/model/ApiError.model'
 import { Page } from '../data-models/model/Page.model'
 
 export class DeviceService {
-    private baseURL = 'http://localhost:8080/api/device'
+    private baseURL = `${process.env.REACT_APP_API_BASE_URL}/api/device`
 
     async getDevicesByType(type: DeviceType, page: number, size: number): Promise<APIResponse<Page<Device>>> {
         try {
