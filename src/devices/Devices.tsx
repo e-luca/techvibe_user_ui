@@ -7,12 +7,14 @@ import Search from '../utils/Search'
 
 const Devices: React.FC = () => {
     const [selectedDevice, setSelectedDevice] = useState<DeviceType>(DeviceType.AUDIO_EQUIPMENT)
+    const [searchQuery, setSearchQuery] = useState<string>('')
 
     const handleDeviceSelect = (device: DeviceType) => {
         setSelectedDevice(device)
     }
 
     const applySearch = (searchQuery: string) => {
+        setSearchQuery(searchQuery)
     }
 
     return (
@@ -27,7 +29,7 @@ const Devices: React.FC = () => {
                 </div>
 
                 <div className="board">
-                    <DevicesBoard type={ selectedDevice } />
+                    <DevicesBoard type={ selectedDevice } searchQuery={ searchQuery } setSearchQuery={ setSearchQuery } />
                 </div>
             </div>
         </div>

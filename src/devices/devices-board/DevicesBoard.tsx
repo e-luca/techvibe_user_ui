@@ -6,16 +6,27 @@ import { DeviceType } from '../../data-models/enum/DeviceType.enum'
 import DeviceCard from '../device-card/DeviceCard'
 
 interface DeviceBoardProps {
-    type: DeviceType
+    type: DeviceType,
+    searchQuery: string,
+    setSearchQuery: (query: string) => void
 }
 
-const DevicesBoard: React.FC<DeviceBoardProps> = ({ type }) => {
+const DevicesBoard: React.FC<DeviceBoardProps> = ({ type, searchQuery, setSearchQuery }) => {
     const [devices, setDevices] = useState<Device[]>([])
     const [loading, setLoading] = useState<boolean>(false)
+    const service = new DeviceService()
 
     const getDevices = () => {
-        const service = new DeviceService()
         service.getDevicesByType(type, 0 , 10).then((response) => {
+            setDevices(response.data.content)
+            setLoading(false)
+        })
+    }
+
+    const searchDevices = () => {
+        if (!searchQuery) return
+
+        service.searchDevices(searchQuery, 0, 10).then((response) => {
             setDevices(response.data.content)
             setLoading(false)
         })
@@ -24,7 +35,13 @@ const DevicesBoard: React.FC<DeviceBoardProps> = ({ type }) => {
     useEffect(() => {
         setLoading(true)
         getDevices()
+        setSearchQuery('')
     }, [type])
+
+    useEffect(() => {
+        setLoading(true)
+        searchDevices()
+    }, [searchQuery])
 
 
     return !loading 
