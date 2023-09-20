@@ -26,7 +26,7 @@ export class DeviceService {
     async searchDevices(searchQuery: string, page: number, size: number): Promise<APIResponse<Page<Device>>> {
         try {
             const response = await axios.get(`${this.baseURL}/search`, {
-                params: { searchQuery, page, size }
+                params: { 'query': searchQuery, page, size }
             })
 
             return new APIResponse(response.data, response.status, response.statusText)

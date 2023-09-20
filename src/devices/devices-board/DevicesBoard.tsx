@@ -50,6 +50,7 @@ const DevicesBoard: React.FC<DeviceBoardProps> = ({ type, searchQuery, setSearch
             { devices.map((device) => (
                 <DeviceCard key={ device.id } device={ device }/>
             ))}
+            
         </div>
         )
     : (
