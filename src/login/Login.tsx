@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import FormInput from '../utils/form-input/FormInput'
 import { AuthService } from '../auth/auth.service'
 import { AuthenticationRequest } from '../data-models/model/AuthenticationRequest.model'
+import { APIResponse } from '../data-models/model/ApiResponse.model'
 
 const Login: React.FC = () => {
     const navigate = useNavigate()
@@ -15,7 +16,10 @@ const Login: React.FC = () => {
         const requestData = Object.fromEntries(data.entries())
         const service = new AuthService()
         const request = new AuthenticationRequest(requestData.email.toString(), requestData.password.toString())
-        service.authenticate(request).then(_ => navigateTo('/home'))
+        service.authenticate(request).then((response: APIResponse<string>) => {
+            localStorage.setItem('accessToken', response.data)
+            navigateTo('/home')
+        })
     }
 
     return (
