@@ -1,0 +1,13 @@
+div.modal-body {
+    padding: 0;
+}
+
+div.card-text {
+    margin: 0.75em auto;
+}
+
+.close-btn {
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+}
