@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './DevicePreviewModal.css'
 import { Device } from '../../data-models/model/Device.model'
+import DeviceCustomerReview from './device-customer-review/DeviceCustomerReview'
 
 interface DevicePreviewModalProps {
     show: boolean
@@ -55,8 +56,8 @@ const DevicePreviewModal: React.FC<DevicePreviewModalProps> = ({ show, device, o
                                         </div>
                                     </div>
                                 </div>
-                                <div className="modal-footer">
-
+                                <div className="modal-footer w-100">
+                                    <DeviceCustomerReview />
                                 </div>
                             </div>
 
