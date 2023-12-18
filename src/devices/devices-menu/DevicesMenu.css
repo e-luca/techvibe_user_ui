@@ -1,10 +1,19 @@
-.list-group-item:hover {
+li.list-group-item:hover {
     cursor: pointer;
-    background-color: red;
+    background-color: #dc3545;
     color: white;
 }
 
-.selected {
-    background-color: red;
+li.list-group-item {
+    display: flex;
+    padding: 0 10px;
+    height: 3em;
+    align-items: center;
+    border: 2em dotted #dc3545;
+    font-size: 1.2em;
+}
+
+li.selected {
+    background-color: #dc3545;
     color: white;
 }

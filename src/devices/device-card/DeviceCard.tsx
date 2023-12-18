@@ -34,7 +34,13 @@ const DeviceCard: React.FC<DeviceCardProps> = ({ device }) => {
                         className="btn btn-outline-danger"
                         title="Preview" 
                         onClick={ openModal }>
-                            <i className="bi bi-display"/>
+                            <i className="bi bi-binoculars"/>
+                </button>
+                <button type="button" 
+                        className="btn btn-outline-danger"
+                        title="Show reviews" 
+                        onClick={ openModal }>
+                            <i className="bi bi-clipboard2-check"/>
                 </button>
             </div>
             { showModal && <DevicePreviewModal show={ showModal } onHide={ openModal } device={ device } /> }

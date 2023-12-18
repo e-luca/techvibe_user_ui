@@ -17,14 +17,33 @@ const DevicesMenu: React.FC<DevicesMenuProps> = ({ onDeviceSelect }) => {
         onDeviceSelect(device)
     }
 
+    const assignIcon = (type: DeviceType) => {
+        switch(type) {
+            case DeviceType.AUDIO_EQUIPMENT:
+                return 'bi bi-headphones'
+            case DeviceType.CAMERA:
+                return 'bi bi-camera'
+            case DeviceType.GAMING_CONSOLES:
+                return 'bi bi-controller'
+            case DeviceType.LAPTOP_NOTEBOOKS:
+                return 'bi bi-laptop'
+            case DeviceType.MOBILE_SMARTPHONES:
+                return 'bi bi-phone'
+            case DeviceType.SMART_HOME_DEVICES:
+                return 'bi bi-robot'
+        }
+    }
+
+    const icons = deviceItems.map(device => assignIcon(device.type))
+
     return (
         <div className="card border-danger">
             <ul className="list-group list-group-flush">
-                { deviceItems.map((item) => (
+                { deviceItems.map((item, index) => (
                         <li key={ item.type } 
                             className={ selectedDevice === item.type ? 'selected list-group-item' : 'list-group-item' }
                             onClick={ () => selectDevice(item.type) }>
-                                { item.displayName }
+                                <i className={ `${icons[index]} me-3` }/>{ item.displayName }
                         </li>
                     ))
                 }
