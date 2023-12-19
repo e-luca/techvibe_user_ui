@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 interface RatingProps {
     currentRating?: number
@@ -14,6 +14,10 @@ const Rating: React.FC<RatingProps> = ({ currentRating = 0, onChange }) => {
         setRating(selectedRating)
         onChange(selectedRating)
     }
+
+    useEffect(() => {
+        setRating(currentRating)
+    }, [currentRating])
 
     return (
         <div>
