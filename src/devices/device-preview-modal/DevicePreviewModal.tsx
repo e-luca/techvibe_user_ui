@@ -57,7 +57,7 @@ const DevicePreviewModal: React.FC<DevicePreviewModalProps> = ({ show, device, o
                                     </div>
                                 </div>
                                 <div className="modal-footer w-100">
-                                    <DeviceCustomerReview />
+                                    <DeviceCustomerReview deviceId={ device.id } />
                                 </div>
                             </div>
 

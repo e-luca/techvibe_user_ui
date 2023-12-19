@@ -9,3 +9,7 @@
 .bi-star:hover, .bi-star-fill:hover, .bi-heart:hover, .bi-heart-fill:hover {
     cursor: pointer;
 }
+
+.bi-heart-fill {
+    color: #dc3545;
+}
