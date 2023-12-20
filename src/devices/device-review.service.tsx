@@ -1,5 +1,6 @@
 import { APIError } from '../data-models/model/ApiError.model'
 import { APIResponse } from '../data-models/model/ApiResponse.model'
+import { Page } from '../data-models/model/Page.model'
 import { Review } from '../data-models/model/Review.mode'
 import { ReviewModification } from '../data-models/model/ReviewModification.model'
 import api from '../utils/api'
@@ -21,7 +22,7 @@ export class DeviceReviewService {
         }
     }
 
-    async getDeviceReviews(deviceId: number, page: number = 0, size: number = 10): Promise<APIResponse<Review>> {
+    async getDeviceReviews(deviceId: number, page: number = 0, size: number = 10): Promise<APIResponse<Page<Review>>> {
         try {
             const response = await api.get(`/device/review/${deviceId}/all`, {
                 params: { page, size },

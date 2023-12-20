@@ -2,16 +2,22 @@ import React, { useState } from 'react'
 import './DeviceCard.css'
 import { Device } from '../../data-models/model/Device.model'
 import DevicePreviewModal from '../device-preview-modal/DevicePreviewModal'
+import DeviceReviewsModal from '../device-reviews-modal/DeviceReviewsModal'
 
 interface DeviceCardProps {
     device: Device
 }
 
 const DeviceCard: React.FC<DeviceCardProps> = ({ device }) => {
-    const [showModal, setShowModal] = useState(false)
+    const [showPreviewModal, setShowPreviewModal] = useState(false)
+    const [showReviewsModal, setShowReviewsModal] = useState(false)
 
-    const openModal = () => {
-        setShowModal(prevState => !prevState)
+    const openPreviewModal = () => {
+        setShowPreviewModal(prevState => !prevState)
+    }
+
+    const openReviewsModal = () => {
+        setShowReviewsModal(prevState => !prevState)
     }
 
     return(
@@ -33,17 +39,18 @@ const DeviceCard: React.FC<DeviceCardProps> = ({ device }) => {
                 <button type="button" 
                         className="btn btn-outline-danger"
                         title="Preview" 
-                        onClick={ openModal }>
+                        onClick={ openPreviewModal }>
                             <i className="bi bi-binoculars"/>
                 </button>
                 <button type="button" 
                         className="btn btn-outline-danger"
                         title="Show reviews" 
-                        onClick={ openModal }>
+                        onClick={ openReviewsModal }>
                             <i className="bi bi-clipboard2-check"/>
                 </button>
             </div>
-            { showModal && <DevicePreviewModal show={ showModal } onHide={ openModal } device={ device } /> }
+            { showPreviewModal && <DevicePreviewModal show={ showPreviewModal } onHide={ openPreviewModal } device={ device } /> }
+            { showReviewsModal && <DeviceReviewsModal show={ showReviewsModal } onHide={ openReviewsModal } deviceId={ device.id } /> }
         </div>
     )
 }
