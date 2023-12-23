@@ -1,9 +1,14 @@
 import React from 'react'
 import './Home.css'
+import HomeNavigation from './home-navigation/HomeNavigation'
 
 const Home: React.FC = () => {
     return (
-        <div>Home!</div>
+        <div>
+            <div className="d-flex">
+                <HomeNavigation />
+            </div>
+        </div>
     )
 }
 
