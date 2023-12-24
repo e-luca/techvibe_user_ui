@@ -3,6 +3,7 @@ import './DeviceCard.css'
 import { Device } from '../../data-models/model/Device.model'
 import DevicePreviewModal from '../device-preview-modal/DevicePreviewModal'
 import DeviceReviewsModal from '../device-reviews-modal/DeviceReviewsModal'
+import { CartService } from '../../cart/cart.service'
 
 interface DeviceCardProps {
     device: Device
@@ -11,6 +12,7 @@ interface DeviceCardProps {
 const DeviceCard: React.FC<DeviceCardProps> = ({ device }) => {
     const [showPreviewModal, setShowPreviewModal] = useState(false)
     const [showReviewsModal, setShowReviewsModal] = useState(false)
+    const cartService = new CartService()
 
     const openPreviewModal = () => {
         setShowPreviewModal(prevState => !prevState)
@@ -18,6 +20,11 @@ const DeviceCard: React.FC<DeviceCardProps> = ({ device }) => {
 
     const openReviewsModal = () => {
         setShowReviewsModal(prevState => !prevState)
+    }
+
+    const addItem = () => {
+        if (!device.id) return
+        cartService.addItemToCart(device.id).then()
     }
 
     return(
@@ -33,7 +40,8 @@ const DeviceCard: React.FC<DeviceCardProps> = ({ device }) => {
             <div className="d-flex justify-content-end mb-3 me-3 gap-2">
                 <button type="button"
                         title="Add to cart" 
-                        className="btn btn-danger">
+                        className="btn btn-danger" 
+                        onClick={ addItem }>
                             <i className="bi bi-cart-plus"/>
                 </button>
                 <button type="button" 
