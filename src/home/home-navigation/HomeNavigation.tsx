@@ -21,7 +21,8 @@ const HomeNavigation: React.FC = () => {
                     <i className="bi bi-cart3"></i>
                 </button>
                 <button type="button" 
-                        className="home-nav-btn btn btn-outline-danger">
+                        className="home-nav-btn btn btn-outline-danger" 
+                        onClick={ () => navigateTo('/favorites') }>
                 <i className="bi bi bi-box2-heart"></i>
                 </button>
             </div>

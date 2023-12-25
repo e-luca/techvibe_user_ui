@@ -36,4 +36,20 @@ export class DeviceService {
                     : this.defaultError
         }
     }
+
+    
+    async getFavorites(page: number, size: number): Promise<APIResponse<Page<Device>>> {
+        try {
+            const response = await api.get('/device/favorites', {
+                params: { page, size },
+                headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` }
+            })
+    
+            return new APIResponse(response.data, response.status, response.statusText)
+        } catch(error: any) {
+            throw error && error.response 
+                    ? new APIError(error.response.status, error.response.statusText, error.message)
+                    : this.defaultError
+        }
+    }
 }

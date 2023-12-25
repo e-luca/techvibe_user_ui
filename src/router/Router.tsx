@@ -5,6 +5,7 @@ import { Routes, Route } from 'react-router-dom'
 import Login from '../login/Login'
 import Registration from '../registration/Registration'
 import Cart from '../cart/Cart'
+import Favorites from '../favorites/Favorites'
 
 const Router: React.FC = () => {
     return (
@@ -14,6 +15,7 @@ const Router: React.FC = () => {
             <Route path='/login' element={ <Login/> }></Route>
             <Route path='/register' element={ <Registration/> }></Route>
             <Route path='/cart' element= { <Cart /> }></Route>
+            <Route path='/favorites' element= { <Favorites /> }></Route>
         </Routes>
     )
 }

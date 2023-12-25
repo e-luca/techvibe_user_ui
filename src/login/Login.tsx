@@ -18,7 +18,7 @@ const Login: React.FC = () => {
         const request = new AuthenticationRequest(requestData.email.toString(), requestData.password.toString())
         service.authenticate(request).then((response: APIResponse<string>) => {
             localStorage.setItem('accessToken', response.data)
-            navigateTo('/home')
+            navigateTo('/')
         })
     }
 
